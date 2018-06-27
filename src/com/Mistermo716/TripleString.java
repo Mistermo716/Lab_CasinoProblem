@@ -9,7 +9,7 @@ public class TripleString {
     public static final int MAX_PULLS = 40;
     private static final int [] pullWinnings = new int [MAX_PULLS];
     public static final int MAX_LEN = 20;
-    public static int numPulls;
+    public static int numPulls = 0;
 
 
 
@@ -24,38 +24,62 @@ public class TripleString {
         if(!str.equals(null) && str.length() <= this.MAX_LEN){
             return true;
         }
-        else{
             return false;
-        }
     }
 
     public String getString1() {
         return string1;
     }
 
-    public void setString1(String string1) {
+    public boolean setString1(String string1) {
         if(validString(string1)) {
             this.string1 = string1;
+            return true;
         }
+        return false;
     }
 
     public String getString2() {
         return string2;
     }
 
-    public void setString2(String string2) {
+    public boolean setString2(String string2) {
         if(validString(string2)) {
             this.string2 = string2;
+            return true;
         }
+        return false;
     }
 
     public String getString3() {
         return string3;
     }
 
-    public void setString3(String string3) {
+    public boolean setString3(String string3) {
         if(validString(string3)) {
             this.string3 = string3;
+            return true;
         }
+        return false;
     }
+
+    public String toString(){
+        String combinedStr = this.string1 + " " + this.string2 +  " " + " " + this.string3;
+        return combinedStr;
+    }
+
+    public boolean saveWinnings(int winnings){
+        pullWinnings[numPulls] = winnings;
+        numPulls += 1;
+        return true;
+    }
+
+    public String displayWinnings(){
+        int totalWinnings = 0;
+        for(int i = 0; i < numPulls; i++){
+            totalWinnings += pullWinnings[i];
+        }
+        return "Your total Winnings: " + totalWinnings;
+    }
+
 }
