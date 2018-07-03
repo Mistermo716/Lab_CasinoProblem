@@ -4,17 +4,34 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-//        TripleString bet1 = new TripleString();
-//        bet1.setString1("Cherries");
-//        bet1.setString2("Bar");
-//        bet1.setString3("[Space]");
-//
-//        String str = bet1.toString();
-//
-//        System.out.println(str);
-       int multipler =  getPayMutiplier(pull().toString());
-        System.out.println(multipler);
+        TripleString game = new TripleString();
+        System.out.println("Hello Welcome to the casino");
+
+        Scanner input = new Scanner(System.in);
+
+        while(game.numPulls < 40 && game.gameRound == true) {
+            System.out.println("1.  Make a bet and pull");
+            System.out.println("99. Quit");
+            int userInput = input.nextInt();
+
+            if(userInput == 1) {
+                System.out.println("What is your bet?");
+                int currentInput = 0;
+                currentInput = input.nextInt();
+                int bet = getBet(currentInput);
+
+                int multipler = getPayMutiplier(pull(game).toString());
+                game.saveWinnings(bet * multipler);
+                System.out.println("Congrats you win: " + bet*multipler);
+            }
+            if(userInput == 99){
+                game.setGameRound(false);
+                game.displayWinnings();
+            }
+
+        }
+
+        System.out.println(game.displayWinnings());
 
 
     }
@@ -31,22 +48,21 @@ public class Main {
         }
         return bet;
     }
-    public static TripleString pull(){
-        TripleString newPull = new TripleString();
+    public static TripleString pull(TripleString objPull){
 
-        newPull.setString1(randString());
-        newPull.setString2(randString());
-        newPull.setString3(randString());
-        String str = newPull.toString();
+        objPull.setString1(randString());
+        objPull.setString2(randString());
+        objPull.setString3(randString());
+        String str = objPull.toString();
         System.out.println(str);
 
-        return newPull;
+        return objPull;
     }
 
     public static int getPayMutiplier(String pulledString){
 
         String arr[] = pulledString.split(" ", 0);
-     
+
         if(arr[0].equals("cherries") && !arr[1].equals("cherries")){
             return 5;
         }

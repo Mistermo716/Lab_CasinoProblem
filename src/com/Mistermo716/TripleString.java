@@ -7,6 +7,7 @@ public class TripleString {
     private String string3;
 
     public static final int MAX_PULLS = 40;
+    public static boolean gameRound = true;
     private static final int [] pullWinnings = new int [MAX_PULLS];
     public static final int MAX_LEN = 20;
     public static int numPulls = 0;
@@ -61,6 +62,10 @@ public class TripleString {
             return true;
         }
         return false;
+    }
+
+    public void setGameRound(boolean gameRound){
+        this.gameRound = gameRound;
     }
 
     public String toString(){
