@@ -64,7 +64,7 @@ public class TripleString {
     }
 
     public String toString(){
-        String combinedStr = this.string1 + " " + this.string2 +  " " + " " + this.string3;
+        String combinedStr = this.string1 + " " + this.string2 +  " " + this.string3;
         return combinedStr;
     }
 
